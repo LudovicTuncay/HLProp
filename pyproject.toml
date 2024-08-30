@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "HLProp_LudovicTuncay"
+version = "0.0.1"
+authors = [
+  { name="Ludovic TUNCAY", email="ludovic.tuncay@irit.fr" },
+]
+description = "Implementation of Hierarchical Label Propagation (HLP)"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/LudovicTuncay/HLProp"
+Issues = "https://github.com/LudovicTuncay/HLProp/issues"
