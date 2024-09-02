@@ -4,11 +4,9 @@ build-backend = "hatchling.build"
 
 
 [project]
-name = "HLProp_LudovicTuncay"
+name = "HLProp"
 version = "0.0.1"
-authors = [
-  { name="Ludovic TUNCAY", email="ludovic.tuncay@irit.fr" },
-]
+authors = [{ name = "Ludovic TUNCAY", email = "ludovic.tuncay@irit.fr" }]
 description = "Implementation of Hierarchical Label Propagation (HLP)"
 readme = "README.md"
 requires-python = ">=3.8"
