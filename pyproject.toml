@@ -2,7 +2,6 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-
 [project]
 name = "HLProp"
 version = "0.0.1"
@@ -19,3 +18,12 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/LudovicTuncay/HLProp"
 Issues = "https://github.com/LudovicTuncay/HLProp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/HLProp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+]

@@ -1,6 +1,6 @@
 import unittest
 import torch
-from HLProp.HLP import HLP
+from HLProp import HLP
 
 class TestHLP(unittest.TestCase):
 
@@ -12,8 +12,13 @@ class TestHLP(unittest.TestCase):
         ])
         self.hlp = HLP(self.HLP_lookup_table)
 
+        self.hlp_default = HLP()
+
     def test_shape(self):
         self.assertEqual(self.hlp.shape, torch.Size([3, 3]))
+
+    def test_default_shape(self):
+        self.assertEqual(self.hlp_default.shape, torch.Size([527, 527]))
 
     def test_propagate_batch(self):
         result = self.hlp.propagate(torch.tensor([
@@ -55,6 +60,7 @@ class TestHLP(unittest.TestCase):
                 result = self.hlp.propagate(input_tensor)
                 print(result, expected_tensor)
                 self.assertTrue(torch.equal(result, expected_tensor))
+
 
 if __name__ == '__main__':
     unittest.main()
