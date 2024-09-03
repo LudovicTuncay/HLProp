@@ -1,4 +1,6 @@
+from typing import Union, Optional
 import torch
+import importlib.resources
 
 class HLP:
     """
@@ -8,14 +10,14 @@ class HLP:
         HLP_lookup_table (torch.Tensor): A square matrix used for label propagation.
     """
 
-    def __init__(self, HLP_lookup_table: torch.Tensor):
+    def __init__(self, HLP_lookup_table: Optional[Union[str, torch.Tensor]] = None) -> None:
         """
         Initializes the HLP class with a given lookup table.
 
         Args:
-            HLP_lookup_table (torch.Tensor): A square matrix used for label propagation.
+            HLP_lookup_table (Optional[Union[str, torch.Tensor]]): A square matrix used for label propagation,
+                                                                   or a path to a saved tensor, or None.
         """
-        self.HLP_lookup_table = torch.Tensor()
         self.update_lookup_table(HLP_lookup_table)
 
     def __len__(self) -> int:
@@ -45,19 +47,38 @@ class HLP:
         """
         return self.__repr__()
 
-    def update_lookup_table(self, HLP_lookup_table: torch.Tensor) -> None:
+    def update_lookup_table(self, HLP_lookup_table: Optional[Union[str, torch.Tensor]]) -> None:
         """
         Updates the lookup table with a new square matrix.
 
         Args:
-            HLP_lookup_table (torch.Tensor): A new square matrix for the lookup table.
+            HLP_lookup_table (Optional[Union[str, torch.Tensor]]): A new square matrix for the lookup table,
+                                                                   or a path to a saved tensor, or None.
 
         Raises:
             AssertionError: If the provided lookup table is not square.
+            ValueError: If the input type is invalid or if the loaded tensor is not 2D.
         """
-        assert HLP_lookup_table.shape[0] == HLP_lookup_table.shape[1], f'The lookup table is not a square matrix: lookup_table.shape[0] != lookup_table.shape[1] ({HLP_lookup_table.shape[0]} != {HLP_lookup_table.shape[1]})'
-        self.HLP_lookup_table = HLP_lookup_table
+        if HLP_lookup_table is None:
+            loaded_table = torch.load(importlib.resources.files("HLProp").joinpath("HLP_lookup_table.pt"), weights_only=True)
+        elif isinstance(HLP_lookup_table, str):
+            loaded_table = torch.load(HLP_lookup_table, weights_only=True)
+        elif isinstance(HLP_lookup_table, torch.Tensor):
+            loaded_table = HLP_lookup_table
+        else:
+            raise ValueError("Invalid input type for HLP_lookup_table")
 
+        if not isinstance(loaded_table, torch.Tensor):
+            raise ValueError("Loaded data is not a torch.Tensor")
+
+        if len(loaded_table.shape) != 2:
+            raise ValueError(f'The lookup table is not a 2D tensor: len(lookup_table.shape) != 2 ({len(loaded_table.shape)} != 2)')
+
+        if loaded_table.shape[0] != loaded_table.shape[1]:
+            raise ValueError(f'The lookup table is not square: shape = {loaded_table.shape}')
+
+        self.HLP_lookup_table = loaded_table
+        
     def get_HLP_lookup_table(self) -> torch.Tensor:
         """
         Returns the current lookup table.
