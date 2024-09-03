@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "HLProp"
+name = "hlpy"
 version = "0.0.1"
 authors = [{ name = "Ludovic TUNCAY", email = "ludovic.tuncay@irit.fr" }]
 description = "Implementation of Hierarchical Label Propagation (HLP)"
@@ -21,15 +21,15 @@ keywords = [
     "Hierarchy",
 ]
 dependencies = [
-    torch>=1.8.0,
+    "torch>=1.8.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/LudovicTuncay/HLProp"
-Issues = "https://github.com/LudovicTuncay/HLProp/issues"
+Homepage = "https://github.com/LudovicTuncay/hierarchical-label-propagation"
+Issues = "https://github.com/LudovicTuncay/hierarchical-label-propagation/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/HLProp"]
+packages = ["src/hlpy"]
 
 [tool.hatch.build.targets.sdist]
 include = [

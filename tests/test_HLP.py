@@ -1,6 +1,6 @@
 import unittest
 import torch
-from HLProp import HLP
+from hlpy import HLP
 
 class TestHLP(unittest.TestCase):
 
