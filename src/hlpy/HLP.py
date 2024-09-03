@@ -106,13 +106,15 @@ class HLP:
 
     def propagate(self, targets: torch.Tensor) -> torch.Tensor:
         """
-        Applies Hierarchical Label Propagation (HLP) to the target labels.
+        Applies Hierarchical Label Propagation (HLP) to the target labels. 
+        Can also be used to propagate on continuous values. This works if and only if a higher value indicates a higher confidence in the label.
+        This can be useful to apply HLP to the output of a classifier as a post-processing step.
 
         Args:
             targets (torch.Tensor): A tensor of target labels. Can either be a 1D tensor of shape (# of classes) or a 2D tensor of shape (batch_size, # of classes).
 
         Returns:
-            torch.Tensor: The targets with HLP applied.
+            torch.Tensor: The targets with HLP applied in the same shape as the input.
 
         Raises:
             ValueError: If the targets tensor does not have 1 or 2 dimensions.
@@ -160,6 +162,23 @@ if __name__ == '__main__':
             # [1, 0, 0],
             # [1, 1, 0],
             # [0, 0, 1]
+        # ])
+    print("-"*50)
+    print(hlp.propagate(torch.tensor(
+        [
+            [1  , 0  , 0],
+            [0  , 0.5, 0],
+            [0  , 0  , 1],
+            [1  , 0.5, 1],
+            [0.5, 1  , 0]
+        ])))
+    # Expected output:
+        # tensor([
+        #     [1.0, 0  , 0],
+        #     [0.5, 0.5, 0],
+        #     [0  , 0  , 1],
+        #     [1  , 0.5, 1],
+        #     [1.0, 1.0, 0]
         # ])
     print("-"*50)
     print(hlp.propagate(torch.tensor([0, 0, 0])))

@@ -30,6 +30,8 @@ Y = hlp.propagate(Y) # Propagates the labels of a batch of examples.
 
 Please note that hlp.propagate() takes a 1D (# classes) or 2D (Batch Size, # classes) torch.Tensor as an input and returns the propagated labels as a torch.Tensor of the same shape as the input.
 
+the `propagate` method can also be used to propagate on continuous values using the same API. This is true if and only if a higher value indicates a higher confidence in the label. This can be useful to apply HLP to the output of a classifier as a post-processing step.
+
 ## Citation
 If you use this code in your research, please consider citing the following paper:
 
