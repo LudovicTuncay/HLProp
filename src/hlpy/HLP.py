@@ -49,7 +49,13 @@ class HLP:
 
     def update_lookup_table(self, HLP_lookup_table: Optional[Union[str, torch.Tensor]]) -> None:
         """
-        Updates the lookup table with a new square matrix.
+        Updates the lookup table with a new square matrix. 
+        
+        The matrix contains binary numbers. 1 is at index i, j if class j is an unambiguous ancestor of class i. 
+        
+        The square matrix should be of shape (n, n), where n is the number of classes. 
+
+        If the input is None, the default lookup table for AudioSet is loaded.
 
         Args:
             HLP_lookup_table (Optional[Union[str, torch.Tensor]]): A new square matrix for the lookup table,
