@@ -2,17 +2,17 @@
 Implementation of Hierarchical Label Propagation (HLP) in python.
 
 ## Installation
-This code is included in the `hlpy` package. To install it, you can run the following command:
+This code is included in the `hierarchical-label-propagation` package. To install it, you can run the following command:
 
 ```bash
-pip install hlpy
+pip install hierarchical-label-propagation
 ```
 
 ## Usage
-The `hlpy` package provides a class called `HLP` that can be used to run the Hierarchical Label Propagation algorithm. The following code snippet shows how to use it:
+The `hierarchical-label-propagation` package provides a class called `HLP` that can be used to run the Hierarchical Label Propagation algorithm. The following code snippet shows how to use it:
 
 ```python
-from hlpy import HLP
+from hierarchical_label_propagation import HLP
 
 hlp = HLP() # Creates an instance with the default HLP method for AudioSet.
 ``` 

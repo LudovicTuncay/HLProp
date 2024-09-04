@@ -1,6 +1,6 @@
 import unittest
 import torch
-from hlpy import HLP
+from hierarchical_label_propagation import HLP
 
 class TestHLP(unittest.TestCase):
 

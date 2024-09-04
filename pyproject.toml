@@ -3,10 +3,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "hlpy"
+name = "hierarchical-label-propagation"
 version = "0.0.1"
 authors = [{ name = "Ludovic TUNCAY", email = "ludovic.tuncay@irit.fr" }]
-description = "Implementation of Hierarchical Label Propagation (HLP)"
+description = "Python implementation of Hierarchical Label Propagation (HLP)"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -29,7 +29,7 @@ Homepage = "https://github.com/LudovicTuncay/hierarchical-label-propagation"
 Issues = "https://github.com/LudovicTuncay/hierarchical-label-propagation/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/hlpy"]
+packages = ["src/hierarchical_label_propagation"]
 
 [tool.hatch.build.targets.sdist]
 include = [

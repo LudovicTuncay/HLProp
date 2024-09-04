@@ -66,7 +66,7 @@ class HLP:
             ValueError: If the input type is invalid or if the loaded tensor is not 2D.
         """
         if HLP_lookup_table is None:
-            loaded_table = torch.load(importlib.resources.files("hlpy").joinpath("HLP_lookup_table.pt"), weights_only=True)
+            loaded_table = torch.load(importlib.resources.files("hierarchical_label_propagation").joinpath("HLP_lookup_table.pt"), weights_only=True)
         elif isinstance(HLP_lookup_table, str):
             loaded_table = torch.load(HLP_lookup_table, weights_only=True)
         elif isinstance(HLP_lookup_table, torch.Tensor):
